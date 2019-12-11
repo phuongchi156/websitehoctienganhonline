@@ -1,0 +1,126 @@
+﻿@model List<webTiengAnh.Models.entity.HocSinh>
+@{
+    ViewBag.Title = "ThongTinCaNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ListKQ = (List<webTiengAnh.Models.entity.KetQua>)ViewBag.ListKQ;
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Thông tin cá nhân</h3>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Hồ sơ <small>Báo cáo hoạt động</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <h3>@Model.Select(x => x.TenHS).FirstOrDefault()</h3>
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <i class="fa fa-map-marker user-profile-icon"></i> Địa chỉ: @Model.Select(x => x.DiaChi).FirstOrDefault()
+                            </li>
+                            <li class="m-top-xs">
+                                <i class="fa fa-external-link user-profile-icon"></i>
+                                Giới tính: @Model.Select(x => x.GioiTinh).FirstOrDefault()
+                            </li>
+                        </ul>
+                        @*<a class="btn btn-success" href="/Contest/Profile/Edit/@Url.RequestContext.RouteData.Values["id"]"><i class="fa fa-edit m-right-xs"></i>Sửa hồ sơ</a>*@
+                        <!-- end of skills -->
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="profile_title">
+                            <div class="col-md-6">
+                                <h2>Báo cáo</h2>
+                            </div>
+                        </div>
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Kết quả học tập</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Giới thiệu bản thân</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                    <!-- start recent activity -->
+                                    <table class="data table table-striped no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Mã đề</th>
+                                                <th class="hidden-phone">Ngày thi</th>
+                                                <th>Kết quả</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ListKQ)
+                                            {
+                                                <tr>
+                                                    <td>@item.MaKQ</td>
+                                                    <td>@item.MaDe</td>
+                                                    <td class="hidden-phone">@(item.NgayThi.HasValue ? item.NgayThi.Value.ToString("dd/MM/yyyy") : "Không có dữ liệu")</td>
+                                                    <td class="vertical-align-mid">
+                                                        
+                                                            <p> @item.Diem</p>
+                                                       
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    <!-- end recent activity -->
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                    <!-- start user projects -->
+                                    <table class="data table table-striped no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên học sinh</th>
+                                                <th class="hidden-phone">Ngày sinh</th>
+                                                <th>Giới tính</th>
+                                                <th>Tên phụ huynh</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Username (tên đăng nhập)</th>
+                                                <th>Mật khẩu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+   
+                                                <tr>
+                                                    <td>@Model.Select(x => x.TenHS).FirstOrDefault()</td>
+                                                    <td class="hidden-phone">@Model.Select(x => x.NgaySinh).FirstOrDefault()</td>
+                                                    <td>@Model.Select(x => x.GioiTinh).FirstOrDefault()</td>
+                                                    <td> @Model.Select(x => x.PhuHuynh).FirstOrDefault()</td>
+                                                    <td> @Model.Select(x => x.DiaChi).FirstOrDefault()</td>
+                                                    <td> @Model.Select(x => x.SDT).FirstOrDefault()</td>
+                                                    <td> @Model.Select(x => x.UserName).FirstOrDefault()</td>
+                                                    <td> @Model.Select(x => x.PassWord).FirstOrDefault()</td>
+
+                                                </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/vendors/raphael/raphael.min.js"></script>
+<script src="~/Content/vendors/morris.js/morris.min.js"></script>

@@ -1,0 +1,74 @@
+﻿@model List<webTiengAnh.Models.entity.KetQua>
+@{
+    ViewBag.Title = "Kết Quả";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Kết quả thi</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <h3>@item.HocSinh.TenHS</h3>
+
+                        @*<ul class="list-unstyled user_data">
+                            <li>
+                                <i class="fa fa-map-marker user-profile-icon"></i> Địa chỉ: @item.HocSinh.DiaChi
+                            </li>
+
+                            <li>
+                                <i class="fa fa-briefcase user-profile-icon"></i> Ngày sinh: @(item.ThiSinh.NgaySinh.HasValue ? item.ThiSinh.NgaySinh.Value.ToString("dd/MM/yyyy") : "Chưa rõ")
+                            </li>
+                        </ul>*@
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                        <div class="profile_title">
+                            <div class="col-md-6">
+                                <h2>Điểm số</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                    <span>@DateTime.Now</span> <b class="caret"></b>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+
+                        </div>
+                        <div class="col-md-9 x_content">
+                            <ul class="list-group">
+                                <li class="list-group-item">Ngày thi: @(item.NgayThi.HasValue ? item.NgayThi.Value.ToString("dd/MM/yyyy") : "Không có dữ liệu")</li>
+                                <li class="list-group-item">Mã đề: @item.MaDe</li>
+                                <li class="list-group-item">Điểm số: @item.Diem</li>
+                                @if (item.Diem > 50)
+                                {
+                                    <li class="list-group-item">Kết quả: <font color="green">Tốt!!!</font></li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item">Kết quả: <font color="red">Chưa tốt :(</font></li>
+                                }
+                            </ul>
+
+                        </div>
+                        <div class="col-md-9 x_content" style="text-align:center">
+                            <a class="btn btn-success" href="/Home/Index">Trở về trang chủ</a>
+                        </div>
+                    </div>}
+            </div>
+        </div>
+    </div>
+</div>
+
+

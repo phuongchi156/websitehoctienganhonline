@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17824a32bb57452a9aa8bcef1b7684d5" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="TiengAnhModel.ADMIN" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiengAnhModel.BaiHoc" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiengAnhModel.CauHoi" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiengAnhModel.DeThi" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiengAnhModel.HocSinh" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiengAnhModel.KetQua" Width="1.5" PointX="5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiengAnhModel.ch_db" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="TiengAnhModel.FK_ch_db_CauHoi" ManuallyRouted="false" />
+        <AssociationConnector Association="TiengAnhModel.FK_ch_db_DeThi" ManuallyRouted="false" />
+        <AssociationConnector Association="TiengAnhModel.FK_KetQua_HocSinh" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

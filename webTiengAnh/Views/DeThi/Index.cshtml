@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@model List<webTiengAnh.Models.entity.DeThi>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Kỳ thi <small>Danh sách đề bài</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Settings 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Mã đề</th>
+                    <th>Mô tả</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="row_@item.MaDe">
+                        <th scope="row">@item.MaDe</th>
+                        <td>@item.MoTa</td>
+                        <td>
+                            @if (item.TrangThai == true)
+                            {
+                                <a class="btn btn-success btn-xs">Đang mở</a>}
+                            else
+                            {
+                                <a class="btn btn-warning btn-xs">Đã đóng</a>
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDe })
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDe })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDe }, new { onclick = "return ConfirmationDialog()" })
+
+                        </td>
+                    </tr>}
+
+            </tbody>
+        </table>
+        <a href="/DeThi/Create" class="btn btn-success"><i class="fa fa-plus"></i> Thêm đề bài</a>
+    </div>
+</div>
+
+

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TiengAnhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="MaAD" />
+    </Key>
+    <Property Name="MaAD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTenAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ĐiaChiAD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DienThoaiAD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TenDNAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="EmailAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BaiHoc">
+    <Key>
+      <PropertyRef Name="MaBH" />
+    </Key>
+    <Property Name="MaBH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenBH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChuDe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AnhChuDe" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NoiDungAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NghiaTu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NghiaTu2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CauHoi">
+    <Key>
+      <PropertyRef Name="MaCH" />
+    </Key>
+    <Property Name="MaCH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CauHoi1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="D" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DapAn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ch_db" Relationship="Self.FK_ch_db_CauHoi" FromRole="CauHoi" ToRole="ch_db" />
+  </EntityType>
+  <EntityType Name="DeThi">
+    <Key>
+      <PropertyRef Name="MaDe" />
+    </Key>
+    <Property Name="MaDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+    <Property Name="SoCauHoi" Type="Int32" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <Property Name="ThoiGian" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ch_db" Relationship="Self.FK_ch_db_DeThi" FromRole="DeThi" ToRole="ch_db" />
+  </EntityType>
+  <EntityType Name="HocSinh">
+    <Key>
+      <PropertyRef Name="MaHS" />
+    </Key>
+    <Property Name="MaHS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenHS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PhuHuynh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_HocSinh" FromRole="HocSinh" ToRole="KetQua" />
+  </EntityType>
+  <EntityType Name="KetQua">
+    <Key>
+      <PropertyRef Name="MaKQ" />
+    </Key>
+    <Property Name="MaKQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaHS" Type="Int32" />
+    <Property Name="NgayThi" Type="DateTime" Precision="0" />
+    <Property Name="Diem" Type="Double" />
+    <Property Name="MaDe" Type="Int32" />
+    <NavigationProperty Name="HocSinh" Relationship="Self.FK_KetQua_HocSinh" FromRole="KetQua" ToRole="HocSinh" />
+  </EntityType>
+  <EntityType Name="ch_db">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaCH" Type="Int32" />
+    <Property Name="MaDe" Type="Int32" />
+    <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CauHoi" Relationship="Self.FK_ch_db_CauHoi" FromRole="ch_db" ToRole="CauHoi" />
+    <NavigationProperty Name="DeThi" Relationship="Self.FK_ch_db_DeThi" FromRole="ch_db" ToRole="DeThi" />
+  </EntityType>
+  <Association Name="FK_ch_db_CauHoi">
+    <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="0..1" />
+    <End Role="ch_db" Type="Self.ch_db" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CauHoi">
+        <PropertyRef Name="MaCH" />
+      </Principal>
+      <Dependent Role="ch_db">
+        <PropertyRef Name="MaCH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ch_db_DeThi">
+    <End Role="DeThi" Type="Self.DeThi" Multiplicity="0..1" />
+    <End Role="ch_db" Type="Self.ch_db" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeThi">
+        <PropertyRef Name="MaDe" />
+      </Principal>
+      <Dependent Role="ch_db">
+        <PropertyRef Name="MaDe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KetQua_HocSinh">
+    <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="0..1" />
+    <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocSinh">
+        <PropertyRef Name="MaHS" />
+      </Principal>
+      <Dependent Role="KetQua">
+        <PropertyRef Name="MaHS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tienganhlop3s" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+    <EntitySet Name="BaiHocs" EntityType="Self.BaiHoc" />
+    <EntitySet Name="CauHois" EntityType="Self.CauHoi" />
+    <EntitySet Name="DeThis" EntityType="Self.DeThi" />
+    <EntitySet Name="HocSinhs" EntityType="Self.HocSinh" />
+    <EntitySet Name="KetQuas" EntityType="Self.KetQua" />
+    <EntitySet Name="ch_db" EntityType="Self.ch_db" />
+    <AssociationSet Name="FK_ch_db_CauHoi" Association="Self.FK_ch_db_CauHoi">
+      <End Role="CauHoi" EntitySet="CauHois" />
+      <End Role="ch_db" EntitySet="ch_db" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ch_db_DeThi" Association="Self.FK_ch_db_DeThi">
+      <End Role="DeThi" EntitySet="DeThis" />
+      <End Role="ch_db" EntitySet="ch_db" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KetQua_HocSinh" Association="Self.FK_KetQua_HocSinh">
+      <End Role="HocSinh" EntitySet="HocSinhs" />
+      <End Role="KetQua" EntitySet="KetQuas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,49 @@
+﻿
+    @model List<webTiengAnh.Models.entity.BaiHoc>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "BaiHoc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/byme.css" rel="stylesheet" />
+
+<style type="text/css">
+    h2{
+        text-align: center;
+        margin-bottom: 20px;
+        width:100%;
+    }
+    table{
+        text-align: center;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .all{
+        width:100%;
+        text-align:center;
+    }
+</style>
+
+    <h2>DANH SÁCH BÀI HỌC</h2>
+        <div class="all">
+
+            <table>
+                @foreach (var item in Model)
+            {
+                    <tr class="baihoc">
+                        <td>
+                            <a href="/BaiHoc/ChiTietBH/@item.MaBH"> @Html.DisplayFor(modelItem => item.TenBH)</a>
+                        </td>
+                        <td>
+                            @item.ChuDe
+                        </td>
+                        <td>
+                            <a href="/"><img src="@item.AnhChuDe" width="250px" height="250px" /></a>
+
+                        </td>
+                    </tr>
+                }
+            </table>
+            <a href="/Default/Index"><h2> Làm Bài Kiểm Tra TRắc Nghiệm</h2></a>
+
+        </div>

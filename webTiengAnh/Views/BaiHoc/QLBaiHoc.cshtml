@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "QLBaiHoc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@model PagedList.IPagedList<webTiengAnh.Models.entity.BaiHoc>
+@using PagedList.Mvc;
+
+<h2>Danh sách bài học</h2>
+<div class="panel-body">
+    @using (Html.BeginForm("SearchBaHoc", "BaiHoc"))
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-4">
+                    <a type="button" class="btn btn-primary" href="/BaiHoc/ThemBaiHoc">Thêm bài học</a>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="searchString" placeholder="Tìm kiếm" />
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success"> Tìm kiếm</button>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Tên Bài Học")
+        </th>
+        <th>
+            @Html.DisplayName("Chủ đề")
+        </th>
+        <th>
+            @Html.DisplayName("Ảnh Chủ Đề")
+        </th>
+        <th>
+            @Html.DisplayName("Nội Dung")
+        </th>
+        <th>
+            @Html.DisplayName("Nội Dung Ảnh")
+        </th>
+        <th>
+            @Html.DisplayName("Danh sách nghĩa từ")
+        </th>
+        <th>
+            @Html.DisplayName("Danh sách nghĩa từ 2")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenBH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuDe)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.AnhChuDe)*@
+                <img src="@item.AnhChuDe" width="95px" height="95px"/>
+            </td>
+            @if (item.TenBH == "Qua Hình Ảnh")
+            {
+                <td>
+                    <img src="@item.NoiDung" width="95px" height="95px" />
+                </td>
+                <td>
+                    <img src="@item.NoiDungAnh" width="95px" height="95px" />
+                </td>
+            }
+            else
+            {
+                <td>
+                <iframe width="95" height="95" src="@item.NoiDung" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.NghiaTu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NghiaTu2)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "SuaBaiHoc", new { id = item.MaBH }) |
+
+                @Html.ActionLink("Xóa", "XoaBaiHoc", new { id = item.MaBH }, new { onclick = "return ConfirmationDialog()" })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("QLBaiHoc", new { page, @searchString = @ViewBag.SearchString }))
+
+
+
+
+

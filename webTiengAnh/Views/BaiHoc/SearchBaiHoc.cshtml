@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "SearchBaiHoc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@model IEnumerable<webTiengAnh.Models.entity.BaiHoc>
+
+<h2>Danh sách tìm kiếm bài học</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Mã Bài Học")
+        </th>
+        <th>
+            @Html.DisplayName("Tên Bài Học")
+        </th>
+        <th>
+            @Html.DisplayName("Chủ Đề")
+        </th>
+        <th>
+            @Html.DisplayName("Ảnh Chủ Đề")
+        </th>
+        <th>
+            @Html.DisplayName("Nội Dung 1")
+        </th>
+        <th>
+            @Html.DisplayName("Nội Dung 2")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaBH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenBH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnhChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDungAnh)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "SuaHocSinh", new { id = item.MaBH }) |
+
+                @Html.ActionLink("Xóa", "XoaHocSinh", new { id = item.MaBH })
+            </td>
+        </tr>
+    }
+</table>
+
+

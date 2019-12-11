@@ -1,0 +1,167 @@
+﻿@model webTiengAnh.Models.entity.BaiHoc
+
+@{
+    ViewBag.Title = "ThemBaiHoc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm mới bài học</h2>
+@section jsFooter{
+<script>
+    $('#btnSelectImage').on('click', function (e) {
+        e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction =function (url) {
+                $('#txtAnhChuDe').val(url);
+            };
+            finder.popup();
+    })
+    $('#btnNoiDung').on('click', function (e) {
+        e.preventDefault();
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (url) {
+            $('#txtNoiDung').val(url);
+        };
+        finder.popup();
+    })
+    $('#btnNoiDung2').on('click', function (e) {
+        e.preventDefault();
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (url) {
+            $('#txtNoiDung2').val(url);
+        };
+    })
+</script>
+    }
+@*<script>
+    $(document).ready(function () {
+        $('#btnSelectImage').on('click', function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction =function (url) {
+                $('#txtAnhChuDe').val(url);
+            };
+            finder.Popup();
+        })
+    })
+</script>*@
+
+@using (Html.BeginForm("AddBaiHoc", "BaiHoc"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Điền thông tin</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                @Html.Label("Tên Bài học")
+            </div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.TenBH, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenBH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                @Html.Label("Chủ đề")
+            </div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.ChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                @Html.Label("Ảnh chủ đề")
+            </div>
+            @*<div class="col-md-5">
+                @Html.EditorFor(model => model.AnhChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AnhChuDe, "", new { @class = "text-danger" })
+            </div>*@
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AnhChuDe, new { htmlAttributes = new { @class = "form-control", @id="txtAnhChuDe" } , id= "txtAnhChuDe" })
+                <a id="btnSelectImage" href="#"> Chọn ảnh</a>
+                @Html.ValidationMessageFor(model => model.AnhChuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*@if (Model.TenBH == "Qua Hình Ảnh")
+        {*@
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.Label("Nội bài học 1")
+                </div>
+                @*<div class="col-md-5">
+                        @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                    </div>*@
+
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control", @id = "txtNoiDung" }, id = "txtNoiDung" })
+                    <a id="btnNoiDung" href="#"> Chọn ảnh</a>
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.Label("Nội dung bài học 2")
+                </div>
+                @*<div class="col-md-5">
+                        @Html.EditorFor(model => model.NoiDungAnh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoiDungAnh, "", new { @class = "text-danger" })
+                    </div>*@
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NoiDungAnh, new { htmlAttributes = new { @class = "form-control", @id = "txtNoiDung2" }, id = "txtNoiDung2" })
+                    <a id="btnNoiDung2" href="#"> Chọn ảnh</a>
+                    @Html.ValidationMessageFor(model => model.NoiDungAnh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        @*}
+        else
+        {*@
+            @*<div class="control-label col-md-2">
+                @Html.Label("Video")
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                </div>
+
+            </div>*@
+         @*}*@
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">
+                        @Html.Label("Danh sách nghĩa của từ");
+                    </div>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.NghiaTu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NghiaTu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-2">
+                        @Html.Label("Danh sách nghĩa của từ 2");
+                    </div>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.NghiaTu2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NghiaTu2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm mới" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+<div>
+    @Html.ActionLink("Quay lại", "QLBaiHoc")
+</div>
+
+
+
+

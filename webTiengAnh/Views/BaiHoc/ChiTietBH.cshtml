@@ -1,0 +1,89 @@
+﻿
+
+@model List<webTiengAnh.Models.entity.BaiHoc>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ChiTietBH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/byme.css" rel="stylesheet" />
+
+<style type="text/css">
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    table {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .all {
+        width: 100%;
+        text-align: center;
+    }
+</style>
+
+
+<h2>Bài Học</h2>
+<div class="all">
+
+    <table>
+        @foreach (var item in Model)
+            {
+            <tr class="baihoc">
+                <td>
+                    <h2>Tên Bài Học: @Html.DisplayFor(modelItem => item.TenBH)</h2>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+
+                    <p> Chủ đề: @item.ChuDe</p>
+                </td>
+            </tr>
+            if (item.TenBH == "Qua Hình Ảnh")
+            {
+
+
+                <tr>
+                    <td>
+                        <a href="/"><img src="@item.NoiDung" width="350px" height="350px" /></a>
+                    </td>
+                            @*@using (Html.BeginForm("KiemTraNghia", "BaiHoc"))
+                            {
+                                <td><ul>@Html.Label("Nhập nghĩa của từ")</ul> </td>
+                                <td> <ul>@Html.TextBoxFor(m=> m.NghiaTu)</ul></td>
+                            }*@
+                    <td> <input name="nghia1" id="nghia1" type="text"placeholder="Nhập danh sách nghĩa của từ" /></td>
+                    <td> <button value="Kiểm tra" id="btnkt"class="btn btn-circle ">Kiểm tra</button></td>
+                </tr>
+                <tr>
+                    <td style="margin-top: 60px">
+                        <a href="/"><img src="@item.NoiDungAnh" width="350px" height="350px" /></a>
+
+                    </td>
+                    <td> <input name="nghia2" id="nghia2" type="text" placeholder="Nhập danh sách nghĩa của từ" /></td>
+                    <td> <button type="submit" value="Kiểm tra" id="btnkt2" class="btn btn-circle" >Kiểm tra</button></td>
+                </tr>
+                
+            }
+            else
+            {
+                <iframe width="560" height="315" src="@item.NoiDung" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+            }
+
+        }
+    </table>
+
+</div>
+
+
+
+
